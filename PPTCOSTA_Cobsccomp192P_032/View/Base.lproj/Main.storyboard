@@ -97,6 +97,11 @@
                                     <action selector="btnLogin_Click:" destination="J4S-UR-yhB" eventType="touchUpInside" id="opf-sw-kdb"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1i-mq-NMg">
+                                <rect key="frame" x="244" y="477" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="HrM-jR-Alc"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -282,7 +287,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="WQb-l5-cNV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2808.6956521739135" y="-684.375"/>
+            <point key="canvasLocation" x="3286" y="-689"/>
         </scene>
     </scenes>
     <resources>

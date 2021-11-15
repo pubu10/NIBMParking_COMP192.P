@@ -10,10 +10,13 @@ import SwiftUI
 import Firebase
 
 class LoginViewController: UIViewController {
-
+    
     
     @IBOutlet weak var txtEmail: UITextField!
     @IBOutlet weak var txtPassword: UITextField!
+    
+    var msg : String = ""
+    var status : Bool = false
     
     //@StateObject private var test = UserViewModel()
     
@@ -24,32 +27,121 @@ class LoginViewController: UIViewController {
     
     @IBAction func btnLogin_Click(_ sender: Any) {
         
-        let userViewModel = UserViewModel()
-        userViewModel.SetUser(name: "1", email: txtEmail.text ?? "" , password: txtPassword.text ?? "1", NICNo: "1", VehicalNo: "1")
-        userViewModel.UserLogin()
-        let msg = userViewModel.GetMessage()
+        var status : Bool = false
         
-       if(userViewModel.GetStatus())
-       {
-                let alert = UIAlertController(title: "Alert Success", message: msg, preferredStyle: UIAlertController.Style.alert)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
-                self.present(alert, animated: true, completion: nil)
+        var msg : String = ""
+        
+        Auth.auth().signIn(withEmail: txtEmail.text!, password: txtPassword.text!) { (authResult, error) in
+            
+            if let error = error as NSError? {
+                
+                
+                switch AuthErrorCode(rawValue: error.code) {
+                
+                case .operationNotAllowed:
+                    
+                    msg = "Email is not allowed..!"
+                    
+                    break
+                    
+                case .userDisabled:
+                    
+                    msg = "The user account has been disabled by an administrator."
+                    
+                    break
+                    
+                case .invalidEmail:
+                    
+                    msg = "The email address is badly formatted."
+                    
+                    break
+                    
+                case .wrongPassword:
+                    
+                    msg = "The user name or password is invalid "
+                    
+                    break
+                    
+                default:
+                    
+                    msg = "Error"
+                }
+                
+            } else {
+                
+                msg = "User signs in successfully..!"
+                
+                status = true
                 
             }
-            else
+            
+            
+            if(status)
+            
+            
             {
-                let alert = UIAlertController(title: "Alert Error", message: msg, preferredStyle: UIAlertController.Style.alert)
+                
+                
+                let alert = UIAlertController(title: "Alert Success", message: msg, preferredStyle: UIAlertController.Style.alert)
+                
+                
+                
                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                
+                
                 self.present(alert, animated: true, completion: nil)
+                
+                
+                
+                
+                
+                
+                
             }
+            
+            
+            
+            else
+            
+            
+            
+            {
+                
+                
+                
+                let alert = UIAlertController(title: "Alert Error", message: msg, preferredStyle: UIAlertController.Style.alert)
+                
+                
+                
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default, handler: nil))
+                
+                
+                
+                self.present(alert, animated: true, completion: nil)
+                
+                
+                
+                
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+        
         
     }
     
+   
+    
+    
+    
+    
 }
 
-class TestObject {
-    var num: Int = 0
-    
-        
-}
 

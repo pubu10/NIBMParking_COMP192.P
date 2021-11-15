@@ -5,4 +5,13 @@
 //  Created by pubudu tharuka on 2021-11-14.
 //
 
-import Foundation
+struct User {
+    
+    var userName: String!
+    var userEmail: String!
+    var userPassword: String!
+    var Nic : String!
+    var VehicalNo : String!
+    var RegNo : String!
+    
+}
